@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+</head>
+<body>
+    <h1>Jarvis</h1>
+
+    <div id="jarvis-box"></div>
+
+    <input type="text" id="user-input" placeholder="Type a message...">
+    <button id="action-button">Send/Speak</button>
+
+    <button id="menu-button" class="menu-button">Menu</button>
+
+    <div id="menu-panel" class="menu-panel">
+        <label for="menu-user-name">Your Name:</label>
+        <input type="text" id="menu-user-name" placeholder="Enter your name">
+
+        <label for="voice-selection">Voice Selection:</label>
+        <select id="voice-selection"></select>
+
+        <label for="bg-color">Background Color:</label>
+        <input type="color" id="bg-color" value="#ffffff">
+
+        <button id="apply-settings">Apply Settings</button>
+        <button id="clear-chat">Clear Chat</button>
+        <button id="mute-toggle">Mute/Unmute</button>
+    </div>
+
+    <!-- Webcam Video Stream -->
+    <div id="webcam-container">
+        <video id="webcam" autoplay></video>
+        <canvas id="canvas" style="position: absolute;"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
