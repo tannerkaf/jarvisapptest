@@ -1,117 +1,26 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #1a1a1a 0%, #0f9b0f 100%);
-    color: #0f9b0f;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    padding: 20px;
+    font-family: Arial, sans-serif;
     text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
 }
 
 h1 {
-    text-shadow: 0 0 5px #0f9b0f;
-}
-
-#jarvis-box {
-    margin-top: 20px;
-    border: 2px solid #0f9b0f;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 10px;
-    width: 80%;
-    max-width: 600px;
-    height: 400px;
-    overflow-y: auto;
-    font-size: 16px;
-    position: relative;
-}
-
-input[type="text"] {
-    width: 70%;
-    padding: 10px;
-    margin-top: 10px;
-    border: 2px solid #0f9b0f;
-    background-color: #1a1a1a;
-    color: #0f9b0f;
-    font-size: 16px;
-}
-
-button {
-    padding: 10px 20px;
-    margin-top: 10px;
-    background-color: #0f9b0f;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    box-shadow: 0 0 5px #0f9b0f;
-}
-
-button:hover {
-    background-color: #0fa90f;
-    box-shadow: 0 0 15px #0fa90f;
-}
-
-.message {
-    margin: 5px;
-    padding: 5px;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    text-align: left;
-    animation: fadeIn 0.5s ease-out;
-}
-
-.user-message {
-    text-align: right;
-    background-color: rgba(15, 155, 15, 0.3);
-}
-
-.timestamp {
-    font-size: 0.8em;
-    color: #bbb;
-}
-
-.menu-panel {
-    display: none;
-    position: fixed;
-    right: 10px;
-    top: 10px;
-    background-color: white;
-    color: black;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 100;
-}
-
-.menu-button {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 101;
-}
-
-.menu-panel label,
-.menu-panel select,
-.menu-panel input[type="text"],
-.menu-panel input[type="color"] {
-    display: block;
-    margin-bottom: 10px;
+    color: #333;
 }
 
 #webcam-container {
-    margin-top: 20px;
     position: relative;
+    width: 640px;
+    height: 480px;
+    margin: 20px auto;
 }
 
 #webcam {
     width: 100%;
-    max-width: 600px;
-    border: 3px solid #0f9b0f;
-    border-radius: 8px;
+    height: 100%;
+    object-fit: cover;
 }
 
 #canvas {
@@ -120,7 +29,25 @@ button:hover {
     left: 0;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#flip-camera,
+#toggle-camera {
+    display: block;
+    margin: 10px auto;
+}
+
+#webcam.flipped {
+    transform: scaleX(-1);
 }
