@@ -17,11 +17,11 @@ function startWebcam() {
     const video = document.getElementById('webcam');
     video.classList.remove('flipped');  // Remove flip on camera toggle
 
+    // Adjust these constraints to set the video feed to vertical
     const constraints = {
         video: {
-            facingMode: useFrontCamera ? 'user' : 'environment',
-            width: { ideal: 640 },
-            height: { ideal: 480 }
+            aspectRatio: { ideal: 0.5625 },  // 9:16 aspect ratio for portrait mode
+            facingMode: useFrontCamera ? 'user' : 'environment'
         }
     };
 
@@ -38,8 +38,8 @@ function startWebcam() {
 function initializeObjectDetection(video) {
     const canvas = document.getElementById('canvas');
     const context = canvas.getContext('2d');
-    canvas.width = 640;
-    canvas.height = 480;
+    canvas.width = 640;  // Adjust to match video size
+    canvas.height = 1136; // Adjust to match video size
 
     cocoSsd.load().then(model => {
         detectFrame(video, model, context);
