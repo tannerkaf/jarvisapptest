@@ -68,6 +68,33 @@ function appendMessage(sender, message) {
     chatBox.appendChild(messageElement);
 }
 
+// Existing code...
+
+function sendChatToServer(message) {
+    fetch('http://127.0.0.1:5000/save_chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user_id: 1, message: message })  // Adjust user_id as needed
+    })
+    .then(response => response.json())
+    .then(data => console.log('Success:', data))
+    .catch((error) => console.error('Error:', error));
+}
+
+function processUserInput(inputText) {
+    appendMessage('user', inputText);
+    let botResponse = generateBotResponse(inputText);
+    appendMessage('jarvis', botResponse);
+    if (!isMuted) {
+        speak(botResponse);
+    }
+    sendChatToServer(inputText);  // Send input to server
+}
+
+// Rest of your existing code...
+
 function speak(text) {
     let utterance = new SpeechSynthesisUtterance(text);
     if (selectedVoice) {
