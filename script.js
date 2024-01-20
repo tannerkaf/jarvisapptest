@@ -11,49 +11,83 @@ document.getElementById('action-button').addEventListener('click', function() {
         processUserInput(userInputField.value);
         userInputField.value = '';
     } else {
-        startSpeechRecognition();
+        // Implement speech recognition start
     }
 });
 
-// Additional functions for speech recognition, chat processing, etc.
+function processUserInput(inputText) {
+    let response = generateBotResponse(inputText);
+    appendMessage('jarvis', response);
+    if (!isMuted) {
+        speak(response);
+    }
+}
 
-// Menu Button Functionality
+function generateBotResponse(input) {
+    if (input.toLowerCase().includes("hello")) {
+        return `Hello ${userName}! How can I assist you?`;
+    } else if (input.toLowerCase().includes("how are you")) {
+        return "I'm a chatbot, so I don't have feelings, but thanks for asking!";
+    } else {
+        return "I'm not sure how to respond to that.";
+    }
+}
+
+function appendMessage(sender, message) {
+    // Logic to append message to chat interface
+}
+
+function speak(text) {
+    // Logic to convert text to speech
+}
+
+// Menu Button Toggle
 document.getElementById('menu-button').addEventListener('click', function() {
     var menuPanel = document.getElementById('menu-panel');
     menuPanel.style.display = menuPanel.style.display === 'block' ? 'none' : 'block';
 });
 
-// Voice Settings Function
+// Voice Settings
 function updateVoiceSettings() {
-    // Implement voice setting adjustments
+    const voices = synth.getVoices();
+    if (voices.length > 0) {
+        selectedVoice = voices[0].name;
+        localStorage.setItem("jarvis-selected-voice", selectedVoice);
+    }
 }
 
-// Theme Customization Function
+// Theme Customization
 function updateTheme() {
-    // Implement theme customization logic
+    backgroundColor = '#abcdef';
+    document.body.style.backgroundColor = backgroundColor;
+    localStorage.setItem("jarvis-bg-color", backgroundColor);
 }
 
-// Language Selection Function
+// Language Selection
 function changeLanguage() {
-    // Implement language selection logic
+    const newLanguage = 'es';
+    localStorage.setItem("jarvis-language", newLanguage);
+    // Additional logic to change chatbot's language
 }
 
-// Chat History Function
+// Chat History
 function showChatHistory() {
-    // Implement chat history display
+    // Logic to retrieve and display chat history
 }
 
-// Help & Tutorials Function
+// Help & Tutorials
 function showHelp() {
-    // Implement help and tutorial display
+    // Logic to display help information
 }
 
-// Profile Management Function
+// Profile Management
 function updateProfile() {
-    // Implement profile management logic
+    userName = 'New Name';
+    localStorage.setItem("jarvis-user-name", userName);
+    // Additional profile management logic
 }
 
-// Event listeners for menu options
+// Event Listeners for Menu Options
 document.getElementById('voice-settings').addEventListener('click', updateVoiceSettings);
 document.getElementById('theme-customization').addEventListener('click', updateTheme);
 document.getElementById('language-selection').addEventListener('click', changeLanguage);
