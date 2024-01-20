@@ -42,11 +42,10 @@ function processUserInput(inputText) {
     if (!isMuted) {
         speak(botResponse);
     }
+    sendChatToServer(inputText);
 }
 
 function generateBotResponse(input) {
-    input = input.toLowerCase();
-
     if (input.includes("hello") || input.includes("hi")) {
         return `Hello ${userName}! How can I assist you today?`;
     } else if (input.includes("how are you")) {
@@ -68,8 +67,6 @@ function appendMessage(sender, message) {
     chatBox.appendChild(messageElement);
 }
 
-// Existing code...
-
 function sendChatToServer(message) {
     fetch('http://127.0.0.1:5000/save_chat', {
         method: 'POST',
@@ -83,18 +80,6 @@ function sendChatToServer(message) {
     .catch((error) => console.error('Error:', error));
 }
 
-function processUserInput(inputText) {
-    appendMessage('user', inputText);
-    let botResponse = generateBotResponse(inputText);
-    appendMessage('jarvis', botResponse);
-    if (!isMuted) {
-        speak(botResponse);
-    }
-    sendChatToServer(inputText);  // Send input to server
-}
-
-// Rest of your existing code...
-
 function speak(text) {
     let utterance = new SpeechSynthesisUtterance(text);
     if (selectedVoice) {
@@ -102,6 +87,16 @@ function speak(text) {
     }
     synth.speak(utterance);
 }
+
+// Menu Button Functionality
+document.getElementById('menu-button').addEventListener('click', function() {
+    var menuPanel = document.getElementById('menu-panel');
+    if (menuPanel.style.display === 'block') {
+        menuPanel.style.display = 'none';
+    } else {
+        menuPanel.style.display = 'block';
+    }
+});
 
 window.onload = () => {
     if (selectedVoice) {
