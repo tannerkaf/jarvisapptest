@@ -17,6 +17,7 @@ document.getElementById('action-button').addEventListener('click', function() {
 
 function processUserInput(inputText) {
     let response = generateBotResponse(inputText);
+    appendMessage('user', inputText);
     appendMessage('jarvis', response);
     if (!isMuted) {
         speak(response);
@@ -34,11 +35,20 @@ function generateBotResponse(input) {
 }
 
 function appendMessage(sender, message) {
-    // Logic to append message to chat interface
+    const chatBox = document.getElementById('jarvis-box');
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message', sender);
+    messageElement.textContent = `${sender === 'user' ? 'You' : 'Jarvis'}: ${message}`;
+    chatBox.appendChild(messageElement);
+    chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 function speak(text) {
-    // Logic to convert text to speech
+    let utterance = new SpeechSynthesisUtterance(text);
+    if (selectedVoice) {
+        utterance.voice = synth.getVoices().find(voice => voice.name === selectedVoice);
+    }
+    synth.speak(utterance);
 }
 
 // Menu Button Toggle
@@ -67,7 +77,6 @@ function updateTheme() {
 function changeLanguage() {
     const newLanguage = 'es';
     localStorage.setItem("jarvis-language", newLanguage);
-    // Additional logic to change chatbot's language
 }
 
 // Chat History
@@ -84,7 +93,6 @@ function showHelp() {
 function updateProfile() {
     userName = 'New Name';
     localStorage.setItem("jarvis-user-name", userName);
-    // Additional profile management logic
 }
 
 // Event Listeners for Menu Options
