@@ -16,7 +16,7 @@ document.getElementById('action-button').addEventListener('click', function() {
 });
 
 function processUserInput(userInput) {
-    fetch('http://137.184.190.244/get_response', {
+    fetch('http://137.184.176.1/get_response', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
