@@ -3,6 +3,7 @@ const synth = window.speechSynthesis;
 let userName = localStorage.getItem("jarvis-user-name") || "Guest";
 let selectedVoice = localStorage.getItem("jarvis-selected-voice");
 let backgroundColor = localStorage.getItem("jarvis-bg-color") || "#ffffff";
+
 document.body.style.backgroundColor = backgroundColor;
 
 document.getElementById('action-button').addEventListener('click', function() {
@@ -15,7 +16,7 @@ document.getElementById('action-button').addEventListener('click', function() {
 });
 
 function processUserInput(userInput) {
-    fetch('http://127.0.0.1:5000/get_response', {
+    fetch('http://137.184.190.244/get_response', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
